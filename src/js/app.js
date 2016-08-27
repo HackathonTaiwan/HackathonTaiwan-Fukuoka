@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import moment from 'moment';
 
 Vue.use(VueResource);
 
@@ -83,6 +84,7 @@ var tempData = [
 var payloads = [];
 for (var index in tempData) {
 	var data = tempData[index].payload;
+	data.data.date = moment(data.data.date).format('YYYY/MM/DD H:m:s');
 	payloads.push(data)
 }
 

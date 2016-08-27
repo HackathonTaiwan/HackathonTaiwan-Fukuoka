@@ -10,7 +10,8 @@ module.exports = {
         ],
         vendors: [
             'vue',
-            'vue-resource'
+            'vue-resource',
+            'moment'
         ]
     },
     output: {
@@ -22,6 +23,10 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             '_BROWSER': true
+        }),
+        new webpack.ProvidePlugin({
+            'window.moment': 'moment',
+            'moment': 'moment'
         }),
         new CopyWebpackPlugin([
             { from: path.join(__dirname, 'src', 'public'), to: '../' }
@@ -58,6 +63,7 @@ module.exports = {
         noParse: [
             'vue/dist/vue.min.js',
             'vue-resource/dist/vue-resource.min.js',
+            '/moment-with-locales/'
         ]
     },
     externals: {
@@ -66,7 +72,8 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.min.js',
-            'vue-resource$': 'vue-resource/dist/vue-resource.min.js'
+            'vue-resource$': 'vue-resource/dist/vue-resource.min.js',
+            'moment': 'moment/min/moment-with-locales.min.js'
         }
     }
 };
