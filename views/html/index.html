@@ -9,8 +9,53 @@
 	</div>
 	<div class="after-earthquake">
 		<h1>After</h1>
-	</div>
-	<div class="status-view">
 		
+	</div>
+	<div class="payload">
+		<div class="ui basic very padded segment">
+			<div class="ui grid" id="api-data">
+				<div class="row" v-for="payload in payloads">
+					<div class="one wide column">
+						<div class="point-red">
+							<svg height="20" width="20">
+								<circle cx="10" cy="10" r="3" fill="#e60000" fill-opacity="0.9" />
+								<circle cx="10" cy="10" r="10" fill="#ff1a1a" fill-opacity="0.4">
+									<animate attributeType="XML"
+										attributeName="r"
+										from="2" to="10"
+										dur="1.2s"
+										repeatCount="indefinite"
+									/>
+								<circle/>
+							</svg>
+						</div>
+					</div>
+					<div class="fifteen wide column">
+						<h3>
+							ID :  
+							{{ payload.peopleID }} <small>{{ payload.data.date }}</small>
+							<br />
+							Sound : 
+							{{ payload.data.sou }}
+							<br />
+							Air Quality : 
+							{{ payload.data.air }}
+							<br />
+							Humidity : 
+							{{ payload.data.hum }}
+							<br />
+							Temperature : 
+							{{ payload.data.tmp }}
+							<br />
+							Gas : 
+							{{ payload.data.gas }}
+							<br />
+							Sign Data Base : 
+							{{ payload.data.sdb }}
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
