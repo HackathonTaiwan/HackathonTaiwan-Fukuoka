@@ -13,25 +13,29 @@ new Vue({
     },
 	el: '#api-data',
 	data: {
-		payloads: []
+		payloads: [],
+		status: null
 	},
 	methods: {
 		updateData: function () {
+			console.log('start polling');
+
             this.$http.get('//hackathontw.au-syd.mybluemix.net/api/status').then((response) => {
 				// success callback
 				var payloadData = response.json();
-				
+
 				var payloads = [];
 				for (var index in payloadData) {
 					var data = JSON.parse(payloadData[index].payload);
-					data.date = moment(data.date).format('YYYY/MM/DD H:m:s');
 					payloads.push(data);
 				}
 
 				this.$set('payloads', payloads);
+				this.$set('status', 'success');
 				setTimeout(this.updateData, 1000 * 2);
 			}, (response) => {
 				// error callback
+				this.$set('status', 'error');
 			});
         },
 		submit: function (event) {
